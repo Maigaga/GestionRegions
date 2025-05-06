@@ -2,25 +2,20 @@ package com.isimtourist.apigestionregions.controller;
 
 import com.isimtourist.apigestionregions.entity.Population;
 import com.isimtourist.apigestionregions.services.PopulationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/regions/{regionId}/populations")
+@RequestMapping("/api/populations")
+@RequiredArgsConstructor
 public class PopulationController {
     private final PopulationService populationService;
 
-    public PopulationController(PopulationService populationService) {
-        this.populationService = populationService;
-    }
-
     @PostMapping
-    public Population ajouterPopulation(
-            @PathVariable Long regionId,
-            @RequestParam int annee,
-            @RequestParam long nombre) {
-        return populationService.ajouterPopulation(regionId, annee, nombre);
+    public Population ajouterPopulation(@RequestBody Population population) {
+        return populationService.ajouterPopulation(population);
     }
 
     @GetMapping

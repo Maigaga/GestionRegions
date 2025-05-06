@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pays")
+@RequestMapping("/api/pays")
 
 public class paysController {
     private final PaysService paysService;
@@ -14,6 +14,7 @@ public class paysController {
     public paysController(PaysService paysService) {
         this.paysService = paysService;
     }
+
 
     @PostMapping
     public Pays creer(@RequestBody Pays pays) {

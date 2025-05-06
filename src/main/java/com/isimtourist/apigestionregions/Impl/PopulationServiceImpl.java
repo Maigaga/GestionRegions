@@ -22,20 +22,9 @@ public class PopulationServiceImpl implements PopulationService {
     }
 
     @Override
-    public Population ajouterPopulation(Long regionId, int annee, long nombre) {
-        Regions region = regionRepository.findById(regionId)
+    public Population ajouterPopulation(Population population) {
+        Regions region = regionRepository.findById(population.getRegion().getId())
                 .orElseThrow(() -> new RuntimeException("Région non trouvée"));
-
-        // Vérifier si cette année existe déjà
-        Optional<Population> existante = populationRepository.findByRegionIdAndAnnee(regionId, annee);
-        if(existante.isPresent()) {
-            throw new RuntimeException("Données de population existantes pour cette année");
-        }
-
-        Population population = new Population();
-        population.setAnnee(annee);
-        population.setNombre(nombre);
-        population.setRegion(region);
 
         return populationRepository.save(population);
     }

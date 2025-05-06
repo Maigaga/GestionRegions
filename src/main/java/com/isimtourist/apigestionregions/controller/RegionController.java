@@ -1,5 +1,6 @@
 package com.isimtourist.apigestionregions.controller;
 
+import com.isimtourist.apigestionregions.entity.Population;
 import com.isimtourist.apigestionregions.entity.Regions;
 ;
 import com.isimtourist.apigestionregions.services.RegionService;
@@ -9,13 +10,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/regions")
+@RequestMapping("/api/regions")
 public class RegionController {
     private final RegionService regionService;
 
     @PostMapping
-    public Regions creer(@RequestBody Regions region) {
-        return regionService.creerRegion(region);
+    public Regions creer(@RequestBody Regions region, @RequestBody Population population) {
+        return regionService.creerRegion(region, population);
     }
 
     @GetMapping
